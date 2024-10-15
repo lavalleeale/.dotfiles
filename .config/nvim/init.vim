@@ -16,6 +16,7 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCM
 Plug 'numToStr/Comment.nvim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'lervag/vimtex'
 call plug#end()
 lua require('init')
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
@@ -23,4 +24,5 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fo <cmd>Telescope oldfiles<cr>
 set number
 set showtabline=2
+set mouse=
 runtime ./coc.vim
