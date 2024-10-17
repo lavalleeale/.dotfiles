@@ -5,7 +5,7 @@
 }
 
 window#waybar {
-  background-color: rgba(43, 48, 59, 0);
+  background-color: rgba(0, 0, 0, 0);
   transition-property: background-color;
   transition-duration: 0.5s;
 }
@@ -14,31 +14,28 @@ window#waybar.hidden {
   opacity: 0.2;
 }
 
-#battery,
-#power-profiles-daemon {
+#battery {
   border-radius: 0 10px 10px 0;
 }
 
-#network,
-#idle_inhibitor {
+#network {
   border-radius: 10px 0 0 10px;
 }
 
 #clock,
 #workspaces,
-#custom-nextevent {
+#custom-nextevent,
+#power-profiles-daemon {
   border-radius: 10px;
 }
 
 #workspaces {
-  background-color: black;
   border: 2px solid #c9a0dc;
 }
 
 #workspaces button {
-  padding: 0 5px;
-  background-color: transparent;
-  color: #8a8a8a;
+  padding: 0 7px;
+  color: #ffffff;
 }
 
 #workspaces button:hover {
@@ -46,7 +43,7 @@ window#waybar.hidden {
 }
 
 #workspaces button.active {
-  color: #ffffff;
+  color: #c9a0dc;
 }
 
 #workspaces button.urgent {
@@ -62,8 +59,7 @@ window#waybar.hidden {
 .module {
   padding: 0 10px;
   color: #ffffff;
-  background-color: #c9a0dc;
-  color: #000000;
+  background-color: rgba(65, 60, 88, 0.5);
 }
 
 #battery.charging {
@@ -110,10 +106,6 @@ label:focus {
   background-color: #ffa000;
 }
 
-#tray {
-  background-color: transparent;
-}
-
 #idle_inhibitor.activated {
   background-color: #ecf0f1;
   color: #2d3436;
@@ -134,4 +126,10 @@ label:focus {
 
 #mpd.paused {
   background-color: #51a37a;
+}
+
+#custom-nextevent,
+#idle_inhibitor,
+#power-profiles-daemon {
+  margin-left: 5px;
 }
