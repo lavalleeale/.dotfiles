@@ -1,0 +1,6 @@
+use_relative_paths=true
+address=0.0.0.0
+enable_auth=true
+username=alex
+password=7e1924344511fcaeb03076ca78449e94
+rsa_private_key_file=rsa_key.pem

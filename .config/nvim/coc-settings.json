@@ -1,0 +1,13 @@
+{
+	"workspace.rootPatterns": [
+		"package.json",
+		".git"
+	],
+	"eslint.workingDirectories": [
+		{
+			"mode": "auto"
+		}
+	],
+	"diagnostic.virtualTextCurrentLineOnly": false,
+	"diagnostic.virtualText": true
+}

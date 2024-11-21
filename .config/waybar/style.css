@@ -1,3 +1,4 @@
+@import '../../.cache/wal/colors-waybar.css';
 * {
   border: none;
   font-family: Cousine Nerd Font;
@@ -29,13 +30,9 @@ window#waybar.hidden {
   border-radius: 10px;
 }
 
-#workspaces {
-  border: 2px solid #c9a0dc;
-}
-
 #workspaces button {
-  padding: 0 7px;
-  color: #ffffff;
+  padding: 0 0px;
+  color: @color5;
 }
 
 #workspaces button:hover {
@@ -43,12 +40,7 @@ window#waybar.hidden {
 }
 
 #workspaces button.active {
-  color: #c9a0dc;
-}
-
-#workspaces button.urgent {
-  background-color: #c9a0dc;
-  color: #000000;
+  color: @background;
 }
 
 #mode {
@@ -58,30 +50,8 @@ window#waybar.hidden {
 
 .module {
   padding: 0 10px;
-  color: #ffffff;
-  background-color: rgba(65, 60, 88, 0.5);
-}
-
-#battery.charging {
-  color: #000000;
-  background-color: #0bda51;
-}
-
-#battery.critical:not(.charging) {
-  background-color: #f53c3c;
-  color: #ffffff;
-  animation-name: blink;
-  animation-duration: 0.5s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-}
-
-@keyframes blink {
-  to {
-    background-color: #ffffff;
-    color: #000000;
-  }
+  color: @color5;
+  background-color: @foreground;
 }
 
 label:focus {
