@@ -1,6 +1,5 @@
 #! /usr/bin/env sh
-wal  --iterative -qi ~/Pictures
-killall hyprpaper
-echo "preload = $(< "${HOME}/.cache/wal/wal")" > ~/.config/hypr/hyprpaper.conf
-echo "wallpaper = eDP-1,$(< "${HOME}/.cache/wal/wal")" >> ~/.config/hypr/hyprpaper.conf
+wal --iterative -qi ~/Pictures/wallpapers
+pkill hyprpaper
+ln -fs $(<"${HOME}/.cache/wal/wal") ~/Pictures/wallpapers/current
 hyprpaper
