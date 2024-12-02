@@ -154,5 +154,5 @@ configuration {
       sorting-method:    "name";
   }
 }
-@theme "~/.cache/wal/colors-rofi-light.rasi"
+/*@theme "~/.cache/wal/colors-rofi-dark.rasi"*/
 

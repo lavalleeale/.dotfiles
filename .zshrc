@@ -38,8 +38,8 @@ alias please='sudo $(fc -ln -1)'
 alias open=xdg-open
 alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias vg="valgrind --leak-check=full --track-origins=yes --show-reachable=yes"
-alias ls=exa
-alias ll="exa -l"
+alias ls=eza
+alias ll="eza -l"
 alias jodie=yarn
 alias config='pushd ~/.config;nvim;popd'
 alias zshrc='nvim ~/.zshrc'
