@@ -18,6 +18,11 @@ family = "FiraCode Nerd Font Mono"
 style = "Regular"
 
 [keyboard]
-bindings = [
-{ key = "N", mods = "Control|Shift", action = "CreateNewWindow" },
+bindings = [{ key = "N", mods = "Control|Shift", action = "CreateNewWindow" }]
+
+[hints]
+enabled = [
+    { regex = "[\\w-][\\w/-]+\\.\\S+:\\d+:\\d+", command = { program = "code", args = [
+        "--goto",
+    ] }, mouse = { enabled = true } },
 ]

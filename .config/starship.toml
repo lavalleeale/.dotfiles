@@ -8,23 +8,10 @@ $directory\
 $git_branch\
 $git_status\
 [](fg:green bg:cyan)\
-$c\
-$elixir\
-$elm\
-$golang\
-$gradle\
-$haskell\
-$java\
-$julia\
-$nodejs\
-$nim\
-$rust\
-$scala\
-[](fg:cyan bg:white)\
-$docker_context\
-[](fg:white bg:yellow)\
+$nix_shell\
+[](fg:cyan bg:yellow)\
 $time\
-[ ](fg:yellow)\
+[ ](fg:yellow)\
 """
 
 # Disable the blank line at the start of the prompt
@@ -43,7 +30,7 @@ disabled = false
 # represents the current operating system
 [os]
 style = "bg:#9A348E"
-disabled = true # Disabled by default
+disabled = true      # Disabled by default
 
 [directory]
 style = "bg:blue"
@@ -69,9 +56,9 @@ symbol = " "
 style = "bg:cyan"
 format = '[ $symbol ($version) ]($style)'
 
-[docker_context]
-symbol = " "
-format = '[ $symbol $context ]($style)'
+[nix_shell]
+style = "bg:cyan fg:white"
+format = '[via $symbol(\($name\))]($style)'
 
 [elixir]
 symbol = " "
@@ -138,6 +125,6 @@ format = '[ $symbol ($version) ]($style)'
 
 [time]
 disabled = false
-time_format = "%R" # Hour:Minute Format
+time_format = "%R"           # Hour:Minute Format
 style = "bg:yellow"
 format = '[ $time ]($style)'

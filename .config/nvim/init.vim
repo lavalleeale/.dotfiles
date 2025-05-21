@@ -30,11 +30,7 @@ nnoremap <leader>fs <cmd>SessionSearch<cr>
 nnoremap <leader>t <cmd>:NvimTreeToggle<cr>
 autocmd CursorHold * silent call <SID>show_documentation()
 function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    silent! call CocAction('definitionHover')
-  endif
+  silent! call CocAction('definitionHover')
 endfunction
 set number
 set showtabline=2

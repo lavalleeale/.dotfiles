@@ -43,6 +43,20 @@ alias ll="eza -l"
 alias jodie=yarn
 alias config='pushd ~/.config;nvim;popd'
 alias zshrc='nvim ~/.zshrc'
+alias nix-s="nix-shell --run $SHELL -p"
+mklatex() {
+    if [ -z "$1" ]; then
+        echo "Usage: mklatex <filename>"
+        return 1
+    fi
+    local filename="$1"
+    latexmk -pdf -halt-on-error "$filename" && latexmk -c "$filename"
+}
+split() {
+    local escaped
+    escaped=$(printf '%q ' "$@")
+    hyprctl dispatch exec "alacritty --working-directory $(pwd) -e sh -c \"$escaped\""
+}
 bindkey '^xe' edit-command-line
 bindkey '^x^e' edit-command-line
 
@@ -77,5 +91,28 @@ flakify() {
     fi
 }
 
+a() {
+    unalias -m psql up ssh install is stan stan-b cs cbf newbase tobase worker 2>/dev/null
+    # automatically set alias based on pwd
+    case "$PWD" in
+    "/home/alex/Documents/Programming/Submitty/Submitty"*)
+        alias psql='split PGPASSWORD=submitty_dbuser psql -U submitty_dbuser -h localhost -p 16442 submitty_s25_sample'
+        alias up='vagrant up'
+        alias ssh='vagrant ssh'
+        alias install='vagrant ssh -c /usr/local/submitty/.setup/INSTALL_SUBMITTY.sh'
+        alias is="vagrant ssh -c 'bash /usr/local/submitty/GIT_CHECKOUT/Submitty/.setup/INSTALL_SUBMITTY_HELPER_SITE.sh'"
+        alias newbase="vagrant snapshot save base"
+        alias tobase="vagrant snapshot restore base"
+        alias worker="vagrant ssh -c 'systemctl stop submitty_daemon_jobs_handler' && vagrant ssh -c 'bash /usr/local/submitty/GIT_CHECKOUT/Submitty/.setup/INSTALL_SUBMITTY_HELPER_BIN.sh' && vagrant ssh -c 'su -c /usr/local/submitty/sbin/submitty_daemon_jobs/submitty_daemon_jobs.py submitty_daemon' && vagrant ssh -c 'systemctl start submitty_daemon_jobs_handler'"
+        alias stan='pushd $HOME/Documents/Programming/Submitty/Submitty/site; php vendor/bin/phpstan --memory-limit=1000000000; popd'
+        alias stan-b='pushd $HOME/Documents/Programming/Submitty/Submitty/site; php vendor/bin/phpstan --memory-limit=1000000000 -b; popd'
+        alias cs='pushd $HOME/Documents/Programming/Submitty/Submitty/site; php vendor/bin/phpcs; popd'
+        alias cbf='pushd $HOME/Documents/Programming/Submitty/Submitty/site; php vendor/bin/phpcbf; popd'
+        ;;
+    *) ;;
+    esac
+}
+
 wal -Rq
 eval "$(atuin init zsh)"
+eval $(thefuck --alias)

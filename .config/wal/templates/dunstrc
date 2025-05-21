@@ -6,7 +6,7 @@
     # Top right below bar, but less wide
     #geometry = "200x1-8+65"
     width = 445
-    height = 65
+    height = 100
     origin = top-right
     offset = 10x10 
     corner_radius = 10
@@ -33,7 +33,7 @@
     idle_threshold = 120
 
     # Font and typography settings
-    font = Fira Mono 11
+    font = Fira Mono 16 
     alignment = left
     #word_wrap = yes
 
@@ -73,7 +73,7 @@
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
-    line_height = 4
+    line_height = 16
 
 # Set the background and foreground (text) color for all notifications
 [urgency_low]

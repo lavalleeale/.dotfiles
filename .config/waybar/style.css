@@ -32,7 +32,7 @@ window#waybar.hidden {
 
 #workspaces button {
   padding: 0 0px;
-  color: @color5;
+  color: @foreground;
 }
 
 #workspaces button:hover {
@@ -40,7 +40,7 @@ window#waybar.hidden {
 }
 
 #workspaces button.active {
-  color: @background;
+  color: @color5;
 }
 
 #mode {
@@ -50,8 +50,8 @@ window#waybar.hidden {
 
 .module {
   padding: 0 10px;
-  color: @color5;
-  background-color: @foreground;
+  color: @foreground;
+  background-color: @background;
 }
 
 label:focus {
