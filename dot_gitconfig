@@ -1,0 +1,35 @@
+[credential "https://github.com"]
+	helper = 
+	helper = !/run/current-system/sw/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/run/current-system/sw/bin/gh auth git-credential
+[user]
+        name = Alex Lavallee
+        email = 73203142+lavalleeale@users.noreply.github.com
+        signingkey = 34F2E4A1C992F98B51C01D22968D37F0C632E219
+[commit]
+        gpgsign = true
+[core]
+        editor = code -w
+        excludesFile = ~/.gitignore
+	packedGitLimit = 4095m 
+	packedGitWindowSize = 4095m 
+	fileMode = false
+[pull]
+        ff = only
+[filter "lfs"]
+        smudge = git-lfs smudge -- %f
+        process = git-lfs filter-process
+        required = true
+        clean = git-lfs clean -- %f
+[pack] 
+	deltacachesize = 128m
+        packSizeLimit = 4095m 
+        windowMemory = 4095m
+[push]
+	autoSetupRemote = true
+[alias]
+	stash-rename = "!_() { rev=$(git rev-parse $1) && git stash drop $1 || exit 1 ; git stash store -m \"$2\" $rev; }; _"
+[diff]
+	tool = vimdiff

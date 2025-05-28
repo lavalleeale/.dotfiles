@@ -1,0 +1,2 @@
+#! /usr/bin/env bash
+sudo $(nix-store -r $(which ectool) 2>/dev/null)/bin/ectool fanduty 0

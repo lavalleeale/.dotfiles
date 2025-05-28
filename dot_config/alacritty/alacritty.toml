@@ -1,0 +1,33 @@
+[window]
+opacity = 0.5
+blur = true
+[font.bold]
+family = "FiraCode Nerd Font Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "FiraCode Nerd Font Mono"
+style = "Bold Italic"
+
+[font.italic]
+family = "FiraCode Nerd Font Mono"
+style = "Italic"
+
+[font.normal]
+family = "FiraCode Nerd Font Mono"
+style = "Regular"
+
+[keyboard]
+bindings = [{ key = "N", mods = "Control|Shift", action = "CreateNewWindow" }]
+
+[hints]
+enabled = [
+    # Open files in vscode
+    {regex = "[\\w-][\\w/-]+\\.\\S+:\\d+:\\d+",command = { program = "code", args = [
+        "--goto",
+    ] }, mouse = { enabled = true } },
+    # Open links in firefox
+    {regex = "https?:\\/\\/[\\w.]*(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)",command = { program = "firefox", args = [
+        "--new-tab",
+    ] }, mouse = { enabled = true } },
+]

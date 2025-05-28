@@ -1,0 +1,10 @@
+.direnv
+.envrc
+shell.nix
+default.nix
+Session.vim
+venv
+aliases.zsh
+flake.lock
+flake.nix
+.copilot-pull-request-description-instructions.md

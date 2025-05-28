@@ -1,0 +1,90 @@
+[global]
+    # Middle between bars
+    #geometry = "300x1-790+10"
+    # Top right below bar
+    #geometry = "285x1-8+65"
+    # Top right below bar, but less wide
+    #geometry = "200x1-8+65"
+    width = 445
+    height = 100
+    origin = top-right
+    offset = 10x10 
+    corner_radius = 10
+
+    # Shrink width if text is shorter than width
+    shrink = no
+
+    # Height of separator between notifications
+    separator_height = 0
+
+    # Add vertical padding to the inside of the notification
+    # same size as polybar blocks
+    #padding = 13
+    padding = 13
+
+    # Add horizontal padding for when the text gets long enough
+    horizontal_padding = 15
+
+    # The frame color and width of the notification
+    frame_color = "#ffffff"
+    frame_width = 0
+
+    # How long a user needs to be idle for sticky notifications
+    idle_threshold = 120
+
+    # Font and typography settings
+    font = Fira Mono 16 
+    alignment = left
+    #word_wrap = yes
+
+    # Format for how notifications will be displayed
+    # The format of the message. Possible variables are:
+    #   %a  appname
+    #   %s  summary
+    #   %b  body
+    #   %i  iconname (including its path)
+    #   %I  iconname (without its path)
+    # Usage: `notify-send 'Title' 'Summary'`
+    format = "<b>%s</b>:\n%b"
+
+    # Allow some HTML tags like <i> and <u> in notifications
+    markup = full
+
+    # Icons
+    # left, right or off; off disables the icon
+    icon_position = left
+    max_icon_size = 50
+    icon_path = /usr/share/icons/Papirus-Dark/16x16/status/:/usr/share/icons/Papirus-Dark/16x16/devices/:/usr/share/icons/Papirus-Dark/32x32/apps/:/usr/share/icons/Papirus-Dark/symbolic/status/
+
+    # browser
+    browser = firefox 
+
+    # Disable indicators like (A) [action to open app] or (U) [open url]
+    show_indicators = no
+
+    # Ignore new lines
+    ignore_newline = no 
+
+    # Change location of ellipsis "..."
+    ellipsize = end
+
+    # Max number of notifications for history
+    history_length = 10
+
+    # The spacing between lines.  If the height is smaller than the
+    # font height, it will get raised to the font height.
+    line_height = 16
+
+# Set the background and foreground (text) color for all notifications
+[urgency_low]
+    background = "{background}"
+    foreground = "{color6}"
+
+[urgency_normal]
+    background = "{background}"
+    foreground = "{color6}"
+
+[urgency_critical]
+    background = "{background}"
+    foreground = "{color6}"
+
