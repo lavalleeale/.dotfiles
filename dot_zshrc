@@ -36,7 +36,6 @@ alias pbcopy=wl-copy
 alias pbpaste=wl-paste
 alias please='sudo $(fc -ln -1)'
 alias open=xdg-open
-alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias vg="valgrind --leak-check=full --track-origins=yes --show-reachable=yes"
 alias ls=eza
 alias ll="eza -l"
