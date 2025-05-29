@@ -1,0 +1,30 @@
+{
+  "lastQuery": "!wallpaper",
+  "maxResults": 100,
+  "plugins": {
+    "ai": {
+      "apiKey": "{{ (bitwarden "item" "api.openai.com").login.password }}",
+      "apiUrl": "https://api.openai.com/v1/chat/completions",
+      "model": "gpt-4o",
+      "relevance": 0.1,
+      "test": {
+        "model": "llama3.2:1b"
+      }
+    },
+    "obsidian": {
+      "vaultPath": "/home/alex/Obsidian Vault"
+    },
+    "wallpaper": {
+      "commands": [
+        "hyprctl hyprpaper reload ,$wallpaper",
+        "wal -qi $wallpaper",
+        "ln -sf \"$wallpaper\" /home/alex/Pictures/wallpapers/current"
+      ],
+      "wallpaperDir": "/home/alex/Pictures/wallpapers/wallpapers"
+    },
+    "web": {
+      "relevance": 0.1,
+      "searchUrl": "https://www.perplexity.ai/?q="
+    }
+  }
+}
