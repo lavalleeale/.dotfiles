@@ -1,0 +1,76 @@
+(defwidget bar []
+  (centerbox :orientation "h"
+    (workspaces)
+    (music)
+    (info)
+  )
+)
+
+(defwidget info []
+  (box :orientation "h" :class "info" :space-evenly false :halign "end"
+    (temp)
+    (time)
+  )
+)
+
+(defwidget temp []
+  (label :text "${temp}°C" :class "temp" :halign "end"
+  )
+)
+
+(defwidget music []
+  (eventbox :onclick "playerctl play-pause"
+    (box :class "music"
+      :orientation "h"
+      :space-evenly false
+      :halign "center"
+      {music != "" ? music : ""}
+    )
+  )
+)
+
+(deflisten workspaces :initial "[]" "bash ~/.config/eww/scripts/get-workspaces.sh")
+(deflisten current_workspace :initial "1" "bash ~/.config/eww/scripts/get-active-workspace.sh")
+(defwidget workspaces []
+  (eventbox :onscroll "bash ~/.config/eww/scripts/change-active-workspace.sh {} ${current_workspace}" :class "workspaces-widget" :width 128 :halign "start"
+    (box
+      (label :text "${workspaces}${current_workspace}" :visible false)
+      (for workspace in workspaces
+        (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}" :width 128 :halign "start"
+          (box :class "workspace-entry ${workspace.windows > 0 ? "occupied" : "empty"}"
+            (label :text "${workspace.id}" :class "workspace-entry ${workspace.id == current_workspace ? "current" : ""}" )
+          )
+        )
+      )
+    )
+  )
+)
+
+(deflisten music :initial ""
+  "playerctl --follow metadata --format '{{ title }} by {{ artist }} ({{duration(mpris:length - position)}})' || true")
+
+(defpoll time :interval "10s"
+"date '+%I:%M%P %A %b %d'")
+
+(defpoll temp :interval "10s"
+"bash ~/.config/eww/scripts/get-temp.sh")
+
+(defwidget time []
+  (label :text "${time}" :class "time"
+    :halign "end"
+    :valign "center"
+  )
+)
+
+(defwindow bar
+  :monitor 0
+  :windowtype "dock"
+  :exclusive true
+  :geometry (
+    geometry :x "0%"
+    :y "0%"
+    :width "170%"
+    :anchor "top center"
+  )
+  (bar)
+)

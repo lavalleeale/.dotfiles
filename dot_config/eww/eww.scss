@@ -1,0 +1,30 @@
+@use "/home/alex/.cache/wal/colors";
+@use "sass:color";
+
+.workspace-entry.current {
+  color: colors.$color7;
+}
+
+.bar {
+  background-color: rgba(0, 0, 0, 0);
+  padding: 2px;
+}
+
+.workspace-entry,
+.music,
+.info {
+  background-color: color.adjust(colors.$background, $alpha: -0.2);
+}
+
+.temp {
+  padding-right: 10px;
+}
+
+label {
+  padding: 3px;
+  color: colors.$color6;
+}
+
+box {
+  border-radius: 10px;
+}
