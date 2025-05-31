@@ -1,0 +1,54 @@
+(deflisten music :initial `{"title": "", "artist": "", "album": "", "status": "Paused", "art": "", "remaining": "", "position": 0, "duration": 1}`
+"bash ~/.config/eww/scripts/get-music-info.sh")
+
+(defwidget largemusic []
+  (box :orientation "h"
+    (box :class "album-art" :style "background-image: url('${music.art}');")
+    (box :orientation "v" :space-evenly false
+      (label :text "${music.title}" :class "music-title")
+      (label :text "${music.album}" :class "music-album")
+      (label :text "${music.artist}" :class "music-artist")
+      (box :orientation "h" :space-evenly false :halign "center"
+        (button :onclick "playerctl previous" :class "music-button"
+          (image :icon "media-seek-backward")
+        )
+        (button :onclick "playerctl play-pause" :class "music-button"
+          (image :icon {music.status == "Playing" ? "media-playback-pause" : "media-playback-start"})
+        )
+        (button :onclick "playerctl next" :class "music-button"
+          (image :icon "media-seek-forward")
+        )
+      )
+      (progress
+        :value {music.position / music.duration * 100}
+        :class "music-progress"
+      )
+      (label :text "${music.remaining}" :class "music-remaining")
+    )
+  )
+)
+
+(defwidget normalmusic []
+  (tooltip
+    (largemusic)
+    (eventbox :onclick "playerctl play-pause"
+      (box
+        :orientation "h"
+        :space-evenly false
+        :halign "center"
+        (box :class "album-art" :halign "center" :width 32 :height 32 :style "background-image: url('${music.art}');")
+        {music == "" ? "" : "${music.title} by ${music.artist} (${music.remaining})"}
+      )
+    )
+  )
+)
+
+(defwidget music []
+  (box :orientation "v" :class "music" :visible {music.title != ""}
+    (stack :selected {bar-large ? 1 : 0} :transition "slideright"
+      (normalmusic)
+      (largemusic)
+    )
+  )
+)
+

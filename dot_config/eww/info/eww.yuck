@@ -1,0 +1,16 @@
+(defwidget info []
+  (box :orientation "h" :class "info" :space-evenly false :halign "end"
+    (systray)
+    (time)
+  )
+)
+
+(defpoll time :interval "10s"
+"date '+%I:%M%P %A %b %d'")
+
+(defwidget time []
+  (label :text "${time}" :class "time"
+    :halign "end"
+    :valign "center"
+  )
+)
