@@ -2,18 +2,18 @@
 @use "sass:color";
 
 .workspace-entry.current {
-  color: colors.$color7;
+  color: colors.$color4;
 }
 
 .bar {
-  background-color: rgba(0, 0, 0, 0);
-  padding: 2px;
+  background-image: none;
+  background-color: transparent;
 }
 
-.workspace-entry,
-.music,
-.info {
-  background-color: color.adjust(colors.$background, $alpha: -0.2);
+.all {
+  background-color: color.adjust(colors.$color2, $alpha: -0.4);
+  padding: 5px;
+  margin: 5px;
 }
 
 .temp {
@@ -22,9 +22,29 @@
 
 label {
   padding: 3px;
-  color: colors.$color6;
+  color: colors.$foreground;
 }
 
 box {
   border-radius: 10px;
+}
+
+.music-button {
+  background-image: none;
+  padding: 10px;
+  margin: 10px;
+  background-color: color.adjust(colors.$color4, $alpha: -0.4);
+}
+
+progressbar.charging > trough > progress {
+  background-color: #28df99;
+}
+
+progressbar.critical > trough > progress {
+  background-color: #ff4d4d;
+}
+
+.album-art {
+  background-size: contain;
+  background-repeat: no-repeat;
 }

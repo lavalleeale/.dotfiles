@@ -1,5 +1,6 @@
-PREV_TITLE=""
+PREV_ALBUM=""
 PREV_ARTIST=""
+PREV_URL=""
 
 function url_encode() {
     echo "$@" |
@@ -36,21 +37,23 @@ function url_encode() {
             -e 's/~/%7e/g'
 }
 
-playerctl --follow metadata --format '{{title}}|{{artist}}|{{album}}' | while IFS='|' read -r TITLE ARTIST ALBUM; do
+playerctl --follow metadata --format '{{title}}|{{artist}}|{{album}}|{{status}}|{{duration(mpris:length - position)}}|{{position}}|{{mpris:length}}' | while IFS='|' read -r TITLE ARTIST ALBUM STATUS REMAINING POSITION DURATION; do
     [ -z "$TITLE" ] && TITLE="Unknown Title"
     [ -z "$ARTIST" ] && ARTIST="Unknown Artist"
     [ -z "$ALBUM" ] && ALBUM="Unknown Album"
+    [ -z "$STATUS" ] && STATUS="Unknown Status"
+    [ -z "$REMAINING" ] && REMAINING="Unknown Duration"
+    [ -z "$POSITION" ] && POSITION="0"
+    [ -z "$DURATION" ] && DURATION="0"
 
     # Only fetch album art if title or artist changed
-    if [ "$TITLE" != "$PREV_TITLE" ] || [ "$ARTIST" != "$PREV_ARTIST" ]; then
+    if [ "$ALBUM" != "$PREV_ALBUM" ] || [ "$ARTIST" != "$PREV_ARTIST" ]; then
         if [ -n "$TITLE" ] && [ -n "$ARTIST" ]; then
-            API_DATA=$(curl -s "https://ws.audioscrobbler.com/2.0/?method=track.getInfo&artist=$(sed 's/[^0-9a-zA-Z.-~]/%02X/g' <<<"$ARTIST")&track=$(sed 's/[^0-9a-zA-Z.-~]/%02X/g' <<<"$TITLE")&api_key=923210b7880a7f8938719397f405640a&format=json")
-            echo "$API_DATA"
-            ART_URL=$(echo "$API_DATA" | jq -r '.track.album.image[-1]."#text"')
-            [ -n "$ART_URL" ] && curl -s "$ART_URL" -o /tmp/album_art.png
+            API_DATA=$(curl -s "https://ws.audioscrobbler.com/2.0/?method=album.getInfo&artist=$(url_encode "$ARTIST")&album=$(url_encode "$ALBUM")&api_key=923210b7880a7f8938719397f405640a&format=json")
+            PREV_URL=$(echo "$API_DATA" | jq -r '.album.image[-1]."#text"')
         fi
-        PREV_TITLE="$TITLE"
+        PREV_ALBUM="$ALBUM"
         PREV_ARTIST="$ARTIST"
     fi
-    jq -cn --arg artist "$ARTIST" --arg title "$TITLE" --arg album "$ALBUM" '$ARGS.named'
+    jq -cn --arg artist "$ARTIST" --arg title "$TITLE" --arg album "$ALBUM" --arg status "$STATUS" --arg remaining "$REMAINING" --arg position "$POSITION" --arg duration "$DURATION" --arg art "$PREV_URL" '$ARGS.named'
 done
